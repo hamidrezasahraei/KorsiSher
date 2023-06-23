@@ -86,3 +86,10 @@ android {
         minSdk = 24
     }
 }
+
+sqldelight {
+    database("PoemDatabase") {
+        packageName = "korsi.sher.database"
+        sourceFolders = listOf("sqldelight")
+    }
+}

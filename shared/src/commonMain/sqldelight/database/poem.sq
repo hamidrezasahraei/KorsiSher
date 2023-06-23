@@ -1,0 +1,23 @@
+CREATE TABLE poemEntity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    verse1 TEXT NOT NULL,
+    verse2 TEXT NOT NULL,
+    poet TEXT NOT NULL,
+    timestamp INTEGER NOT NULL
+);
+
+getHistory:
+SELECT *
+FROM poemEntity
+ORDER BY timestamp DESC;
+
+insertHistoryEntity:
+INSERT OR REPLACE
+INTO poemEntity(
+    id,
+    verse1,
+    verse2,
+    poet,
+    timestamp
+)
+VALUES (?,?,?,?,?);

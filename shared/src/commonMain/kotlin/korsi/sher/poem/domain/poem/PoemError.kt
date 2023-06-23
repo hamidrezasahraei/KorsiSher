@@ -8,5 +8,5 @@ enum class PoemError {
 }
 
 class PoemException(private val error: PoemError): Exception(
-    message = "An error occurred when getting a poem: $error"
+    "An error occurred when getting a poem: $error"
 )

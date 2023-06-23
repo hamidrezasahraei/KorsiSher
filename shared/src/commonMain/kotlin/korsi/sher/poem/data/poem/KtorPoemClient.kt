@@ -1,11 +1,11 @@
-package korsi.sher.poem.data
+package korsi.sher.poem.data.poem
 
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.utils.io.errors.*
-import korsi.sher.poem.data.NetworkConstants.RANDOM_POEM_URL
+import korsi.sher.poem.data.poem.NetworkConstants.RANDOM_POEM_URL
 import korsi.sher.poem.domain.poem.PoemClient
 import korsi.sher.poem.domain.poem.PoemError
 import korsi.sher.poem.domain.poem.PoemException

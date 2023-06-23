@@ -1,4 +1,4 @@
-package korsi.sher.poem.data
+package korsi.sher.poem.data.poem
 
 import kotlinx.serialization.SerialName
 

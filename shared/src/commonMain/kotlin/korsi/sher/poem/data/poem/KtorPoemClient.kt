@@ -5,7 +5,9 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.utils.io.errors.*
+import korsi.sher.poem.data.mapper.toPoemItem
 import korsi.sher.poem.data.poem.NetworkConstants.RANDOM_POEM_URL
+import korsi.sher.poem.domain.history.PoemItem
 import korsi.sher.poem.domain.poem.PoemClient
 import korsi.sher.poem.domain.poem.PoemError
 import korsi.sher.poem.domain.poem.PoemException
@@ -13,7 +15,7 @@ import korsi.sher.poem.domain.poem.PoemException
 class KtorPoemClient(
     private val httpClient: HttpClient //Will differ on Android and IOS but the logic is the same
 ): PoemClient {
-    override suspend fun randomPoem(): String {
+    override suspend fun randomPoem(): PoemItem {
         val result = try {
             httpClient.get {
                 url(RANDOM_POEM_URL)
@@ -31,7 +33,7 @@ class KtorPoemClient(
         }
 
         return try {
-            result.body<PoemDto>().verse1
+            result.body<PoemDto>().toPoemItem()
         } catch (e: Exception) {
             throw PoemException(PoemError.SERVER_ERROR)
         }

@@ -5,6 +5,7 @@ import com.squareup.sqldelight.runtime.coroutines.mapToList
 import korsi.sher.core.domain.util.CommonFlow
 import korsi.sher.core.domain.util.toCommonFlow
 import korsi.sher.database.PoemDatabase
+import korsi.sher.poem.data.mapper.toPoemItem
 import korsi.sher.poem.domain.history.PoemHistoryDataSource
 import korsi.sher.poem.domain.history.PoemItem
 import kotlinx.coroutines.flow.map

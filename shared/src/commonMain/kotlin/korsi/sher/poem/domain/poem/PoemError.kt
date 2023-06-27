@@ -7,6 +7,6 @@ enum class PoemError {
     UNKNOWN_ERROR
 }
 
-class PoemException(private val error: PoemError): Exception(
+class PoemException(val error: PoemError): Exception(
     "An error occurred when getting a poem: $error"
 )

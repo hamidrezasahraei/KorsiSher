@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
 
 class PoemViewModel(
@@ -45,7 +46,13 @@ class PoemViewModel(
                 }
             }
             PoemEvent.RandomPoem -> {
-                randomPoem(_state.value)
+                val newState = _state.updateAndGet {
+                    it.copy(
+                        isLoading = true,
+                        poemItem = null
+                    )
+                }
+                randomPoem(newState)
             }
             is PoemEvent.SharePoem -> {
                 TODO()

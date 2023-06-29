@@ -5,6 +5,7 @@ import korsi.sher.core.domain.util.toCommonStateFlow
 import korsi.sher.poem.domain.history.PoemHistoryDataSource
 import korsi.sher.poem.domain.poem.PoemException
 import korsi.sher.poem.domain.poem.PoemUseCase
+import korsi.sher.poem.presentation.util.generateRandomColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,15 +42,14 @@ class PoemViewModel(
             PoemEvent.OnErrorSeen -> {
                 _state.update {
                     it.copy(
-                        error = null
+                        isLoading = true
                     )
                 }
             }
             PoemEvent.RandomPoem -> {
                 val newState = _state.updateAndGet {
                     it.copy(
-                        isLoading = false,
-                        poemItem = null
+                        colors = generateRandomColors()
                     )
                 }
                 randomPoem(newState)

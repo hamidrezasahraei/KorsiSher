@@ -54,6 +54,12 @@ fun PoemScreen(
                     color = Color(state.colors.second),
                     fontSize = 18.sp
                 )
+                Spacer(modifier = Modifier.size(8.dp))
+                Text(
+                    text = "«${it.poet}»",
+                    color = Color(state.colors.second),
+                    fontSize = 14.sp
+                )
             }
         }
         Spacer(modifier = Modifier.size(16.dp))

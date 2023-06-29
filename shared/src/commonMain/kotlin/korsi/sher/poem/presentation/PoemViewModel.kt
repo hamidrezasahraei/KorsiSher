@@ -48,7 +48,7 @@ class PoemViewModel(
             PoemEvent.RandomPoem -> {
                 val newState = _state.updateAndGet {
                     it.copy(
-                        isLoading = true,
+                        isLoading = false,
                         poemItem = null
                     )
                 }

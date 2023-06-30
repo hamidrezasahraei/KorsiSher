@@ -47,12 +47,7 @@ class PoemViewModel(
                 }
             }
             PoemEvent.RandomPoem -> {
-                val newState = _state.updateAndGet {
-                    it.copy(
-                        colors = generateRandomColors()
-                    )
-                }
-                randomPoem(newState)
+                randomPoem()
             }
             is PoemEvent.SharePoem -> {
                 TODO()
@@ -60,8 +55,8 @@ class PoemViewModel(
         }
     }
 
-    private fun randomPoem(state: PoemState) {
-        if (state.isLoading) {
+    private fun randomPoem() {
+        if (state.value.isLoading) {
             return
         }
         viewModelScope.launch {
@@ -75,7 +70,8 @@ class PoemViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            poemItem = result.data
+                            poemItem = result.data,
+                            colors = generateRandomColors()
                         )
                     }
                 }

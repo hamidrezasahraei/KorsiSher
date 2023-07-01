@@ -10,9 +10,9 @@ fun generateRandomColors(): Triple<Int, Int, Int> {
 
 private fun generateRandomColor(): Int {
     val alpha = 255
-    val red = Random.nextInt(256)
-    val green = Random.nextInt(256)
-    val blue = Random.nextInt(256)
+    val red = Random.nextInt(128)
+    val green = Random.nextInt(128)
+    val blue = Random.nextInt(128)
     return (alpha shl 24) or (red shl 16) or (green shl 8) or blue
 }
 

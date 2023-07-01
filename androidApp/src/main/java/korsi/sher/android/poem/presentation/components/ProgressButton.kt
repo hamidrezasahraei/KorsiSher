@@ -20,13 +20,13 @@ import androidx.compose.ui.unit.sp
 fun ProgressButton(
     text: String,
     isLoading: Boolean,
-    color: Int,
+    color: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     TextButton(
         onClick = onClick,
-        border = BorderStroke(1.dp, Color(color)),
+        border = BorderStroke(1.dp, color),
         shape = RoundedCornerShape(50),
         modifier = modifier
     ){
@@ -34,14 +34,14 @@ fun ProgressButton(
             if(isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(24.dp),
-                    color = Color(color),
+                    color = color,
                     strokeWidth = 2.dp
                 )
             } else {
                 Text(
                     text = text,
                     style = TextStyle(
-                        color = Color(color),
+                        color = color,
                         fontSize = 14.sp
                     )
                 )

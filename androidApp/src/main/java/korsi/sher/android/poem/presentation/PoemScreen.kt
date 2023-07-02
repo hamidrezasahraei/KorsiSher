@@ -1,5 +1,6 @@
 package korsi.sher.android.poem.presentation
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,9 +13,17 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ClipboardManager
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -54,7 +63,7 @@ fun PoemScreen(
                     verse2 = it.verse2,
                     poet = it.poet,
                     textColor = Color(state.colors.second),
-                    onCopyClicked = { /*TODO*/ },
+                    poemCopyText = it.getTextForShare(),
                     onFavoriteClicked = {
                         onEvent(PoemEvent.LikePoem(it))
                     }
@@ -76,13 +85,12 @@ fun PoemScreen(
             colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.DarkGray,contentColor = Color.White)
         ){
             Text(
-                text = "❤️ قلبی‌ها ",
+                text = "❤️ قلبی‌شده‌ها ",
                 style = TextStyle(
                     color = Color.White,
                     fontSize = 14.sp
                 )
             )
         }
-
     }
 }

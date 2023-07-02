@@ -54,7 +54,7 @@ fun LikeScreen(
                     verse2 = poemItem.verse2,
                     poet = poemItem.poet,
                     textColor = Color(state.colors.second),
-                    onCopyClicked = { /*TODO*/ },
+                    poemCopyText = poemItem.getTextForShare(),
                     onFavoriteClicked = null
                 )
             }

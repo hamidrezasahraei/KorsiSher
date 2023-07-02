@@ -1,8 +1,10 @@
-package korsi.sher.poem.presentation
+package korsi.sher.poem.presentation.poem
 
 import korsi.sher.core.domain.util.Resource
 import korsi.sher.core.domain.util.toCommonStateFlow
+import korsi.sher.poem.domain.history.LikeUseCase
 import korsi.sher.poem.domain.history.PoemHistoryDataSource
+import korsi.sher.poem.domain.history.PoemItem
 import korsi.sher.poem.domain.poem.PoemException
 import korsi.sher.poem.domain.poem.PoemUseCase
 import korsi.sher.poem.presentation.util.generateRandomColors
@@ -13,11 +15,11 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
 
 class PoemViewModel(
     private val poemUseCase: PoemUseCase,
+    private val likeUseCase: LikeUseCase,
     private val poemHistoryDataSource: PoemHistoryDataSource,
     private val coroutineScope: CoroutineScope?
 ) {
@@ -52,6 +54,9 @@ class PoemViewModel(
             is PoemEvent.SharePoem -> {
                 TODO()
             }
+            is PoemEvent.LikePoem -> {
+                likePoem(event.poem)
+            }
         }
     }
 
@@ -84,6 +89,15 @@ class PoemViewModel(
                     }
                 }
             }
+        }
+    }
+
+    private fun likePoem(poemItem: PoemItem) {
+        if (state.value.isLoading) {
+            return
+        }
+        viewModelScope.launch {
+            likeUseCase.execute(poemItem)
         }
     }
 

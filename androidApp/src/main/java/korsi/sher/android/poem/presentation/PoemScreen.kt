@@ -1,6 +1,5 @@
 package korsi.sher.android.poem.presentation
 
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,11 +7,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,15 +19,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import korsi.sher.android.poem.presentation.components.PoemComponent
+import korsi.sher.android.core.presentation.components.PoemComponent
 import korsi.sher.android.poem.presentation.components.ProgressButton
-import korsi.sher.poem.presentation.PoemEvent
-import korsi.sher.poem.presentation.PoemState
+import korsi.sher.poem.presentation.poem.PoemEvent
+import korsi.sher.poem.presentation.poem.PoemState
 
 @Composable
 fun PoemScreen(
     state: PoemState,
-    onEvent: (PoemEvent) -> Unit
+    onEvent: (PoemEvent) -> Unit,
+    onLikedScreenClicked: () -> Unit
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
@@ -57,7 +55,9 @@ fun PoemScreen(
                     poet = it.poet,
                     textColor = Color(state.colors.second),
                     onCopyClicked = { /*TODO*/ },
-                    onFavoriteClicked = { /*TODO*/ }
+                    onFavoriteClicked = {
+                        onEvent(PoemEvent.LikePoem(it))
+                    }
                 )
             }
         }
@@ -69,7 +69,9 @@ fun PoemScreen(
             onClick = { onEvent(PoemEvent.RandomPoem) }
         )
         Button(
-            onClick = {  },
+            onClick = {
+                onLikedScreenClicked()
+            },
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.DarkGray,contentColor = Color.White)
         ){

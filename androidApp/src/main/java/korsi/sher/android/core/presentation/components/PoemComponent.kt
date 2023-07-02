@@ -1,6 +1,8 @@
-package korsi.sher.android.poem.presentation.components
+package korsi.sher.android.core.presentation.components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,11 +12,17 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.IconToggleButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,8 +36,15 @@ fun PoemComponent(
     poet: String,
     textColor: Color,
     onCopyClicked: () -> Unit,
-    onFavoriteClicked: () -> Unit
+    onFavoriteClicked: (() -> Unit)?
 ) {
+    var liked by remember {
+        mutableStateOf(false)
+    }
+    // this is used to disable the ripple effect
+    val interactionSource = remember {
+        MutableInteractionSource()
+    }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -70,18 +85,33 @@ fun PoemComponent(
                     tint = Color.White
                 )
             }
+            if (onFavoriteClicked != null) {
+                Spacer(modifier = Modifier.size(8.dp))
 
-            Spacer(modifier = Modifier.size(8.dp))
-            IconButton(
-                onClick = {
-                    onFavoriteClicked()
+
+                Spacer(modifier = Modifier.size(8.dp))
+
+                IconToggleButton(
+                    checked = liked,
+                    onCheckedChange = {
+                        liked = it
+                    }
+                ) {
+                    Icon(
+                        imageVector = if (liked) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = "Favorite Item",
+                        modifier = Modifier
+                            .clickable(
+                                indication = null, // assign null to disable the ripple effect
+                                interactionSource = interactionSource
+                            ) {
+                                liked = !liked
+                                onFavoriteClicked()
+                            }
+                            .size(24.dp),
+                        tint = if (liked) Color.Red else Color.White
+                    )
                 }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.FavoriteBorder,
-                    contentDescription = "Save Poem",
-                    tint = Color.White
-                )
             }
         }
     }

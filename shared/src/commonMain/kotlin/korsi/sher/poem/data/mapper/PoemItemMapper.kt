@@ -15,7 +15,7 @@ fun PoemEntity.toPoemItem(): PoemItem {
 
 fun PoemDto.toPoemItem(): PoemItem {
     return PoemItem(
-        id = null,
+        id = "$verse1+$verse2".hashCode().toLong(),
         verse1 = verse1,
         verse2 = verse2,
         poet = poet

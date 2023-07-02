@@ -15,6 +15,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import korsi.sher.android.core.presentation.Routes
+import korsi.sher.android.like.presentation.AndroidLikeViewModel
+import korsi.sher.android.like.presentation.LikeScreen
 import korsi.sher.android.poem.presentation.AndroidPoemViewModel
 import korsi.sher.android.poem.presentation.PoemScreen
 
@@ -46,6 +48,17 @@ fun PoemRoot() {
             val viewModel = hiltViewModel<AndroidPoemViewModel>()
             val state by viewModel.state.collectAsState()
             PoemScreen(
+                state = state,
+                onEvent = viewModel::onEvent,
+                onLikedScreenClicked = {
+                    navController.navigate(Routes.LIKE)
+                }
+            )
+        }
+        composable(route = Routes.LIKE) {
+            val viewModel = hiltViewModel<AndroidLikeViewModel>()
+            val state by viewModel.state.collectAsState()
+            LikeScreen(
                 state = state,
                 onEvent = viewModel::onEvent
             )

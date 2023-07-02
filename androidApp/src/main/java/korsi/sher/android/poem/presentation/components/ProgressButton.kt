@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.sp
 fun ProgressButton(
     text: String,
     isLoading: Boolean,
-    color: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -45,7 +44,7 @@ fun ProgressButton(
                     text = text,
                     style = TextStyle(
                         color = Color.White,
-                        fontSize = 14.sp
+                        fontSize = 16.sp
                     )
                 )
             }

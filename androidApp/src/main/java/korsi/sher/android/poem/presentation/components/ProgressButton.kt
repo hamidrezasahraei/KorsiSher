@@ -3,8 +3,11 @@ package korsi.sher.android.poem.presentation.components
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -24,24 +27,24 @@ fun ProgressButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    TextButton(
+    Button(
         onClick = onClick,
-        border = BorderStroke(1.dp, color),
         shape = RoundedCornerShape(50),
+        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Black,contentColor = Color.White),
         modifier = modifier
     ){
         AnimatedContent(targetState = isLoading) { isLoading ->
             if(isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(24.dp),
-                    color = color,
+                    color = Color.White,
                     strokeWidth = 2.dp
                 )
             } else {
                 Text(
                     text = text,
                     style = TextStyle(
-                        color = color,
+                        color = Color.White,
                         fontSize = 14.sp
                     )
                 )

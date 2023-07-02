@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		56C7C5A184CAF71333F4428D /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB71FA92C9D73822084EFA5A /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		796290852A51A32200A66007 /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796290842A51A32200A66007 /* ProgressButton.swift */; };
+		798DBA2C2A50AABB009A9F41 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798DBA2B2A50AABB009A9F41 /* Colors.swift */; };
+		798DBA312A50DD8A009A9F41 /* PoemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798DBA302A50DD8A009A9F41 /* PoemScreen.swift */; };
+		798DBA332A50EB5F009A9F41 /* IOSPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798DBA322A50EB5F009A9F41 /* IOSPoemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		796290842A51A32200A66007 /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
+		798DBA2B2A50AABB009A9F41 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		798DBA302A50DD8A009A9F41 /* PoemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemScreen.swift; sourceTree = "<group>"; };
+		798DBA322A50EB5F009A9F41 /* IOSPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSPoemViewModel.swift; sourceTree = "<group>"; };
 		EE1EA440B7914087E92CD736 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		FB71FA92C9D73822084EFA5A /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF64F96337911B91021B9933 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -67,7 +75,8 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				79B3426A2A4F6B65001D5AE0 /* translate */,
+				798DBA2E2A50DD61009A9F41 /* poem */,
+				798DBA2D2A50DD16009A9F41 /* core */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -77,17 +86,44 @@
 			path = iosApp;
 			sourceTree = "<group>";
 		};
-		79B3426A2A4F6B65001D5AE0 /* translate */ = {
+		796290832A51A30F00A66007 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				796290842A51A32200A66007 /* ProgressButton.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		798DBA2D2A50DD16009A9F41 /* core */ = {
 			isa = PBXGroup;
 			children = (
 				79B3426B2A4F6B75001D5AE0 /* presentation */,
 			);
-			path = translate;
+			path = core;
+			sourceTree = "<group>";
+		};
+		798DBA2E2A50DD61009A9F41 /* poem */ = {
+			isa = PBXGroup;
+			children = (
+				798DBA2F2A50DD67009A9F41 /* presentation */,
+			);
+			path = poem;
+			sourceTree = "<group>";
+		};
+		798DBA2F2A50DD67009A9F41 /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				796290832A51A30F00A66007 /* components */,
+				798DBA302A50DD8A009A9F41 /* PoemScreen.swift */,
+				798DBA322A50EB5F009A9F41 /* IOSPoemViewModel.swift */,
+			);
+			path = presentation;
 			sourceTree = "<group>";
 		};
 		79B3426B2A4F6B75001D5AE0 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				798DBA2B2A50AABB009A9F41 /* Colors.swift */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -121,6 +157,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				9A88A747D9D0C3AE26788AE0 /* Frameworks */,
+				CCD8532632513AEC29CE2699 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,6 +254,23 @@
 			shellPath = /bin/sh;
 			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignPodAppleFrameworkForXcode\n";
 		};
+		CCD8532632513AEC29CE2699 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -224,7 +278,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796290852A51A32200A66007 /* ProgressButton.swift in Sources */,
+				798DBA312A50DD8A009A9F41 /* PoemScreen.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				798DBA332A50EB5F009A9F41 /* IOSPoemViewModel.swift in Sources */,
+				798DBA2C2A50AABB009A9F41 /* Colors.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +420,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -401,6 +460,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

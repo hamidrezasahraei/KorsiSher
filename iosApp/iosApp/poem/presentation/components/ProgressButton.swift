@@ -29,7 +29,7 @@ struct ProgressButton: View {
                     .cornerRadius(100)
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
             } else {
-                Text("شعری بگو")
+                Text(text)
                     .animation(.easeInOut, value: isLoading)
                     .padding(.horizontal)
                     .padding(.vertical, 5)

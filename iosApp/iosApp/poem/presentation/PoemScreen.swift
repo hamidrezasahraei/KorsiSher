@@ -13,12 +13,18 @@ struct PoemScreen: View {
     
     private var poemHistoryDataSource: PoemHistoryDataSource
     private var poemUseCase: PoemUseCase
+    private var likeUseCase: LikeUseCase
     @ObservedObject var viewModel: IOSPoemViewModel
     
-    init(poemHistoryDataSource: PoemHistoryDataSource, poemUseCase: PoemUseCase) {
+    private let appModule = AppModule()
+    
+    @State private var isBookmarked = false
+    
+    init(poemHistoryDataSource: PoemHistoryDataSource, poemUseCase: PoemUseCase, likeUseCase: LikeUseCase) {
         self.poemHistoryDataSource = poemHistoryDataSource
         self.poemUseCase = poemUseCase
-        self.viewModel = IOSPoemViewModel(historyDataSource: poemHistoryDataSource, poemUseCase: poemUseCase)
+        self.likeUseCase = likeUseCase
+        self.viewModel = IOSPoemViewModel(historyDataSource: poemHistoryDataSource, poemUseCase: poemUseCase, likeUseCase: likeUseCase)
     }
     
     var body: some View {
@@ -45,15 +51,43 @@ struct PoemScreen: View {
                         Text("« \(poemItem.poet) »")
                             .foregroundColor(textColor)
                             .font(.system(size: 16))
+                        HStack(spacing: 16) {
+                            Image(systemName: "square.and.pencil").foregroundColor(.red)
+                            Toggle(isOn: $isBookmarked) {
+                                        Image(systemName: isBookmarked ? "heart.fill" : "heart")
+                                            .font(.system(size: 18))
+                                    }
+                                    .tint(.white)
+                                    .toggleStyle(.button)
+                                    .clipShape(Circle())
+                                    .onChange(of: isBookmarked) { value in
+                                        viewModel.onEvent(event: PoemEvent.LikePoem(poem: poemItem))
+                                    }
+                        }
                     }
+                    .padding()
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(.white, lineWidth: 1)
+                    )
                 }
             }
                         
-            ProgressButton(text: "شعری بگو",
+            ProgressButton(text: "یه بیت دیگه بگو 📝",
                            isLoading: viewModel.state.isLoading,
                            onClick: { viewModel.onEvent(event: PoemEvent.RandomPoem())})
                 .foregroundColor(Color.white)
                 .padding()
+            
+            NavigationLink(destination: LikeScreen()) {
+                Text("قلبی شده‌ها ❤️")
+                    .padding(.horizontal)
+                    .padding(.vertical, 5)
+                    .background(Color(hex: 0xFF444444))
+                    .foregroundColor(.white)
+                    .cornerRadius(100)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(backgroundColor)

@@ -13,6 +13,8 @@
 		56C7C5A184CAF71333F4428D /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB71FA92C9D73822084EFA5A /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		796290852A51A32200A66007 /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796290842A51A32200A66007 /* ProgressButton.swift */; };
+		796290892A52184B00A66007 /* IOSLikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796290882A52184B00A66007 /* IOSLikeViewModel.swift */; };
+		7962908B2A5218AD00A66007 /* LikeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7962908A2A5218AD00A66007 /* LikeScreen.swift */; };
 		798DBA2C2A50AABB009A9F41 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798DBA2B2A50AABB009A9F41 /* Colors.swift */; };
 		798DBA312A50DD8A009A9F41 /* PoemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798DBA302A50DD8A009A9F41 /* PoemScreen.swift */; };
 		798DBA332A50EB5F009A9F41 /* IOSPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798DBA322A50EB5F009A9F41 /* IOSPoemViewModel.swift */; };
@@ -26,6 +28,8 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796290842A51A32200A66007 /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
+		796290882A52184B00A66007 /* IOSLikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSLikeViewModel.swift; sourceTree = "<group>"; };
+		7962908A2A5218AD00A66007 /* LikeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeScreen.swift; sourceTree = "<group>"; };
 		798DBA2B2A50AABB009A9F41 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		798DBA302A50DD8A009A9F41 /* PoemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemScreen.swift; sourceTree = "<group>"; };
 		798DBA322A50EB5F009A9F41 /* IOSPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSPoemViewModel.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				796290862A52180400A66007 /* like */,
 				798DBA2E2A50DD61009A9F41 /* poem */,
 				798DBA2D2A50DD16009A9F41 /* core */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -92,6 +97,23 @@
 				796290842A51A32200A66007 /* ProgressButton.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		796290862A52180400A66007 /* like */ = {
+			isa = PBXGroup;
+			children = (
+				796290872A52182C00A66007 /* presentation */,
+			);
+			path = like;
+			sourceTree = "<group>";
+		};
+		796290872A52182C00A66007 /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				796290882A52184B00A66007 /* IOSLikeViewModel.swift */,
+				7962908A2A5218AD00A66007 /* LikeScreen.swift */,
+			);
+			path = presentation;
 			sourceTree = "<group>";
 		};
 		798DBA2D2A50DD16009A9F41 /* core */ = {
@@ -278,7 +300,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7962908B2A5218AD00A66007 /* LikeScreen.swift in Sources */,
 				796290852A51A32200A66007 /* ProgressButton.swift in Sources */,
+				796290892A52184B00A66007 /* IOSLikeViewModel.swift in Sources */,
 				798DBA312A50DD8A009A9F41 /* PoemScreen.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				798DBA332A50EB5F009A9F41 /* IOSPoemViewModel.swift in Sources */,

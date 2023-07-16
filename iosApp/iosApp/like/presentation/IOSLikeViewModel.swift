@@ -1,5 +1,5 @@
 //
-//  IOSPoemViewModel.swift
+//  IOSLikeViewModel.swift
 //  iosApp
 //
 //  Created by Hamidreza Sahraei on 7/2/23.
@@ -9,37 +9,33 @@
 import Foundation
 import shared
 
-extension PoemScreen {
-    @MainActor class IOSPoemViewModel: ObservableObject {
+extension LikeScreen {
+    @MainActor class IOSLikeViewModel: ObservableObject {
         private var historyDataSource: PoemHistoryDataSource
-        private var poemUseCase: PoemUseCase
         private var likeUseCase: LikeUseCase
         
-        private let viewModel: PoemViewModel
+        private let viewModel: LikeViewModel
         
-        @Published var state: PoemState = PoemState(
-            poemItem: nil,
+        @Published var state: LikeState = LikeState(
             isLoading: false,
-            history: [],
+            likedPoems: [],
             error: nil,
             colors: ColorUtilKt.generateRandomColors()
         )
         
         private var handle: DisposableHandle?
         
-        init(historyDataSource: PoemHistoryDataSource, poemUseCase: PoemUseCase, likeUseCase: LikeUseCase) {
+        init(historyDataSource: PoemHistoryDataSource, likeUseCase: LikeUseCase) {
             self.historyDataSource = historyDataSource
-            self.poemUseCase = poemUseCase
             self.likeUseCase = likeUseCase
-            self.viewModel = PoemViewModel(
-                poemUseCase: poemUseCase,
+            self.viewModel = LikeViewModel(
                 likeUseCase: likeUseCase,
                 poemHistoryDataSource: historyDataSource,
                 coroutineScope: nil
             )
         }
         
-        func onEvent(event: PoemEvent) {
+        func onEvent(event: LikeEvent) {
             viewModel.onEvent(event: event)
         }
         

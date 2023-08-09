@@ -6,7 +6,7 @@
         android:allowBackup="false"
         android:supportsRtl="true"
         android:name=".KorsiSherApp"
-        android:label="This Is Name"
+        android:label="کرسی‌شعر"
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme">
         <activity

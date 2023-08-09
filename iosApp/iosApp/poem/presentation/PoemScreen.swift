@@ -80,7 +80,7 @@ struct PoemScreen: View {
                 .foregroundColor(Color.white)
                 .padding()
             
-            NavigationLink(destination: LikeScreen()) {
+            NavigationLink(destination: LikeScreen(poemHistoryDataSource: poemHistoryDataSource, likeUseCase: likeUseCase)) {
                 Text("قلبی شده‌ها ❤️")
                     .padding(.horizontal)
                     .padding(.vertical, 5)

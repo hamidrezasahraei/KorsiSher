@@ -24,6 +24,41 @@ struct LikeScreen: View {
     
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let backgroundColor = Color(hex: viewModel.state.colors.first as! Int64)
+        let textColor = Color(hex: viewModel.state.colors.second as! Int64)
+
+        List {
+            ForEach(viewModel.state.likedPoems, id: \.self) { poemItem in
+                VStack(spacing: 16) {
+                    Text(poemItem.verse1)
+                        .font(.system(size: 20))
+                        
+                    Text(poemItem.verse2)
+                        .font(.system(size: 20))
+                        
+                    Text("« \(poemItem.poet) »")
+                        .font(.system(size: 16))
+                }
+                .padding() // Optional: To give some space between cell content and borders
+                .background(backgroundColor)
+                .listRowBackground(backgroundColor)
+                .foregroundColor(textColor)
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.white, lineWidth: 1)
+                )
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .listStyle(PlainListStyle()) // This removes default list styling
+        .edgesIgnoringSafeArea(.horizontal) // This extends the content to the screen edges
+        .onAppear {
+            viewModel.startObserving()
+        }
+        .onDisappear {
+            viewModel.dispose()
+        }
     }
+
 }

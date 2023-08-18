@@ -50,7 +50,6 @@ extension PoemScreen {
                 }
             })
         }
-        
         func dispose() {
             handle?.dispose()
         }

@@ -19,6 +19,7 @@ struct PoemScreen: View {
     private let appModule = AppModule()
     
     @State private var isBookmarked = false
+    @State private var showCopyAlert = false
     
     init(poemHistoryDataSource: PoemHistoryDataSource, poemUseCase: PoemUseCase, likeUseCase: LikeUseCase) {
         self.poemHistoryDataSource = poemHistoryDataSource
@@ -52,7 +53,20 @@ struct PoemScreen: View {
                             .foregroundColor(textColor)
                             .font(.system(size: 16))
                         HStack(spacing: 16) {
-                            Image(systemName: "square.and.pencil").foregroundColor(.red)
+                            Button(action: {
+                                copyToClipboard(text: poemItem.getTextForShare())
+                                showCopyAlert = true
+                                    }
+                            ) {
+                                        Image(systemName: "square.and.pencil")
+                                            .resizable()
+                                            .frame(width: 18, height: 18)
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding()
+                                    .alert(isPresented: $showCopyAlert) {
+                                                Alert(title: Text("کپی شد!"), message: Text("شعر رو می تونی هرجا می‌خوای پیست کنی!"), dismissButton: .default(Text("باشه")))
+                                            }
                             Toggle(isOn: $isBookmarked) {
                                         Image(systemName: isBookmarked ? "heart.fill" : "heart")
                                             .font(.system(size: 18))
@@ -98,4 +112,8 @@ struct PoemScreen: View {
             viewModel.dispose()
         }
     }
+    
+    func copyToClipboard(text: String) {
+            UIPasteboard.general.string = text
+        }
 }

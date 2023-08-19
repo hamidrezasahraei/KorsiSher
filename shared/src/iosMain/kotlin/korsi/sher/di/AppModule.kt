@@ -27,7 +27,7 @@ class AppModule {
     }
 
     val poemUseCase: PoemUseCase by lazy {
-        PoemUseCase(poemClient, poemHistoryDataSource)
+        PoemUseCase(poemClient)
     }
 
     val likeUseCase: LikeUseCase by lazy {

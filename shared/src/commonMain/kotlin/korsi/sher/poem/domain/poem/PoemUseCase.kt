@@ -5,14 +5,12 @@ import korsi.sher.poem.domain.history.PoemHistoryDataSource
 import korsi.sher.poem.domain.history.PoemItem
 
 class PoemUseCase(
-    private val poemClient: PoemClient,
-    private val poemHistoryDataSource: PoemHistoryDataSource
+    private val poemClient: PoemClient
 ) {
 
     suspend fun execute(): Resource<PoemItem> {
         return try {
             val poemItem = poemClient.randomPoem()
-//            poemHistoryDataSource.insertHistoryItem(poemItem)
             Resource.Success(poemItem)
         } catch (e: PoemException) {
             e.printStackTrace()

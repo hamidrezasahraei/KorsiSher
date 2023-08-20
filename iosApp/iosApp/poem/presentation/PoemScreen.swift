@@ -18,7 +18,6 @@ struct PoemScreen: View {
     
     private let appModule = AppModule()
     
-    @State private var isBookmarked = false
     @State private var showCopyAlert = false
     
     init(poemHistoryDataSource: PoemHistoryDataSource, poemUseCase: PoemUseCase, likeUseCase: LikeUseCase) {
@@ -31,6 +30,8 @@ struct PoemScreen: View {
     var body: some View {
         let backgroundColor = Color(hex: viewModel.state.colors.first as! Int64)
         let textColor = Color(hex: viewModel.state.colors.second as! Int64)
+        let liked = viewModel.state.poemItem?.isLiked ?? false
+
         VStack {
             if viewModel.state.poemItem == nil {
                 Text("در قدیم در منطقه (طالقان)، مردان دور کرسی جمع می شدند و مشاعره می کردند.. بعد از چند دور که اشعار در ذهن کم می شد، بعضی از خودشان شعر می گفتند! دیگران می گفتند که فلانی کرسی شعر گفت! (در لفظ: برو بابا بازم کرسی شعر گفتی)")
@@ -67,16 +68,18 @@ struct PoemScreen: View {
                                     .alert(isPresented: $showCopyAlert) {
                                                 Alert(title: Text("کپی شد!"), message: Text("شعر رو می تونی هرجا می‌خوای پیست کنی!"), dismissButton: .default(Text("باشه")))
                                             }
-                            Toggle(isOn: $isBookmarked) {
-                                        Image(systemName: isBookmarked ? "heart.fill" : "heart")
-                                            .font(.system(size: 18))
+                            Button(action: {
+                                if let poemItem = viewModel.state.poemItem {
+                                    viewModel.onEvent(event: PoemEvent.LikePoem(poem: poemItem))
+                                }
                                     }
-                                    .tint(.white)
-                                    .toggleStyle(.button)
-                                    .clipShape(Circle())
-                                    .onChange(of: isBookmarked) { value in
-                                        viewModel.onEvent(event: PoemEvent.LikePoem(poem: poemItem))
+                            ) {
+                                        Image(systemName: liked ? "heart.fill" : "heart")
+                                            .resizable()
+                                            .frame(width: 18, height: 18)
+                                            .foregroundColor(.white)
                                     }
+                                    .padding()
                         }
                     }
                     .padding()

@@ -62,6 +62,7 @@ fun PoemScreen(
                     verse1 = it.verse1,
                     verse2 = it.verse2,
                     poet = it.poet,
+                    isLiked = it.isLiked,
                     textColor = Color(state.colors.second),
                     poemCopyText = it.getTextForShare(),
                     onFavoriteClicked = {

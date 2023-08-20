@@ -45,7 +45,7 @@ fun LikeScreen(
             items(
                 count = state.likedPoems.size,
                 key = {
-                    state.likedPoems[it].id ?: it
+                    state.likedPoems[it].id
                 }
             ) {
                 val poemItem = state.likedPoems[it]
@@ -55,7 +55,8 @@ fun LikeScreen(
                     poet = poemItem.poet,
                     textColor = Color(state.colors.second),
                     poemCopyText = poemItem.getTextForShare(),
-                    onFavoriteClicked = null
+                    onFavoriteClicked = null,
+                    isLiked = true
                 )
             }
 

@@ -39,6 +39,7 @@ fun PoemComponent(
     verse1: String,
     verse2: String,
     poet: String,
+    isLiked: Boolean,
     textColor: Color,
     poemCopyText: String,
     onFavoriteClicked: (() -> Unit)?
@@ -46,9 +47,6 @@ fun PoemComponent(
     val context = LocalContext.current
     val clipboardManager: ClipboardManager = LocalClipboardManager.current
 
-    var liked by remember {
-        mutableStateOf(false)
-    }
     // this is used to disable the ripple effect
     val interactionSource = remember {
         MutableInteractionSource()
@@ -101,24 +99,22 @@ fun PoemComponent(
                 Spacer(modifier = Modifier.size(8.dp))
 
                 IconToggleButton(
-                    checked = liked,
+                    checked = isLiked,
                     onCheckedChange = {
-                        liked = it
                     }
                 ) {
                     Icon(
-                        imageVector = if (liked) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        imageVector = if (isLiked) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = "Favorite Item",
                         modifier = Modifier
                             .clickable(
                                 indication = null, // assign null to disable the ripple effect
                                 interactionSource = interactionSource
                             ) {
-                                liked = !liked
                                 onFavoriteClicked()
                             }
                             .size(24.dp),
-                        tint = if (liked) Color.Red else Color.White
+                        tint = if (isLiked) Color.Red else Color.White
                     )
                 }
             }

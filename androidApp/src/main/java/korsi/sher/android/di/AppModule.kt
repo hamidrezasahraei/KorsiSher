@@ -49,10 +49,12 @@ class AppModule {
     @Provides
     @Singleton
     fun providePoemUseCase(
-        poemClient: PoemClient
+        poemClient: PoemClient,
+        poemHistoryDataSource: PoemHistoryDataSource
     ): PoemUseCase {
         return PoemUseCase(
-            poemClient = poemClient
+            poemClient = poemClient,
+            poemHistoryDataSource = poemHistoryDataSource
         )
     }
 

@@ -33,6 +33,9 @@ class PoemViewModel(
     ) { state, history ->
         if (state.history != history) {
             state.copy(
+                poemItem = state.poemItem?.copy(
+                    isLiked = history.any { it.id == state.poemItem.id }
+                ),
                 history = history
             )
         } else state
